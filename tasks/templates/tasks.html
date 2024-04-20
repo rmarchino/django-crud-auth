@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      Tareas pendientes
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        {% for task in tasks %}
+        <a href="{% url 'task_detail' task.id %}">
+          {% if task.important %}
+          <li class="list-group-item text-primary">{{task.title}}</li>
+
+          {% else %}
+          <li class="list-group-item text-primary">{{task.title}}</li>
+          {% endif %}
+        </a>
+        <li class="list-group-item"><span class="fw-bold">Descrpción:</span> {{task.description}}</li>
+        <li class="list-group-item"><span class="fw-bold">Autor:</span> {{task.user.username}}</li>
+        <li class="list-group-item"><span class="fw-bold">Fecha:</span> {{task.datecompleted|date:'M j Y:i'}}</li>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
